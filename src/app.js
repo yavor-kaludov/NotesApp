@@ -39,14 +39,34 @@ function storeNoteInNotesArray() {
 
 function showNotes() {
     const notesList = document.getElementById("notes_list");
-    notesList.innerHTML = "";
+    notesList.innerHTML = ""; // Clear existing notes
 
-    for (const note of notesArray) {
+    notesArray.forEach((note, index) => {
+        const noteAndDeleteDiv = document.createElement("div");
+        // Apply both flexbox and container styles
+        noteAndDeleteDiv.className = "flex flex-row justify-between  p-2 note-container"; // Use this single line to set classes
+
         const singleNote = document.createElement("p");
-        singleNote.textContent = note;
-        notesList.append(singleNote)
-    }
+        const deleteNoteButton = document.createElement("button");
+
+        singleNote.textContent = note; // Set the text of the note
+        deleteNoteButton.textContent = "Delete"; // Set the text of the button
+        deleteNoteButton.onclick = function() { deleteNote(index); }; // Add click handler to delete the note
+
+        // Append elements to the note container div
+        noteAndDeleteDiv.appendChild(singleNote);
+        noteAndDeleteDiv.appendChild(deleteNoteButton);
+
+        // Append the div to the notes list
+        notesList.appendChild(noteAndDeleteDiv);
+    });
 }
+
+function deleteNote(index) {
+    notesArray.splice(index, 1); // Remove the note at the specified index
+    showNotes(); // Refresh the list to show the updated notes
+}
+
 
 function setUpClearButton() {
     const mainComponent = document.getElementById("main_component")
@@ -74,10 +94,22 @@ function updateClearButtonVisibility() {
     }
 }
 
+function handleEnterKey(event) {
+    if (event.keyCode == 13) {
+        event.preventDefault();
+        addNoteToArray();
+    }
+}
+
 // _____________________________________________________
 
 document.addEventListener("DOMContentLoaded", function() {
     startup();
     storeNoteInNotesArray();
     setUpClearButton();
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    const noteInput = document.getElementById("note_input");
+    noteInput.addEventListener('keydown', handleEnterKey);
 });
