@@ -74,8 +74,6 @@ function updateClearButtonVisibility() {
     }
 }
 
-
-
 // _____________________________________________________
 
 document.addEventListener("DOMContentLoaded", function() {
