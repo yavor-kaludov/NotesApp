@@ -1,14 +1,5 @@
 
-function sayHello() {
-    console.log("Hello World!");
-}
 
-function startup() {
-    const button = document.getElementById("start_button");
-    button.addEventListener("click", sayHello);
-}
-
-// ____________________________________________________________
 
 let notesArray = [];
 
@@ -47,7 +38,6 @@ function showNotes() {
         noteAndDeleteDiv.className = "flex flex-row justify-between space-x-5 p-2 note-container"; // Use this single line to set classes
 
         const singleNote = document.createElement("p");
-
         
         // singleNote.className = "break-words overflow-auto"
 
@@ -115,7 +105,7 @@ function handleEnterKey(event) {
 // _____________________________________________________
 
 document.addEventListener("DOMContentLoaded", function() {
-    startup();
+    
     storeNoteInNotesArray();
     setUpClearButton();
 });
