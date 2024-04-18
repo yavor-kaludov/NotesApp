@@ -44,9 +44,20 @@ function showNotes() {
     notesArray.forEach((note, index) => {
         const noteAndDeleteDiv = document.createElement("div");
         // Apply both flexbox and container styles
-        noteAndDeleteDiv.className = "flex flex-row justify-between  p-2 note-container"; // Use this single line to set classes
+        noteAndDeleteDiv.className = "flex flex-row justify-between space-x-5 p-2 note-container"; // Use this single line to set classes
 
         const singleNote = document.createElement("p");
+
+        
+        // singleNote.className = "break-words overflow-auto"
+
+        // Temp FIX for broken margin styling using inline styling direcly with CSS not tailwind. (more specificity???)
+        singleNote.style.overflowWrap = 'break-word';
+        singleNote.style.wordBreak = 'break-all';
+        singleNote.style.marginRight = '10px';
+
+        
+
         const deleteNoteButton = document.createElement("button");
 
         singleNote.textContent = note; // Set the text of the note
