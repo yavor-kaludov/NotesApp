@@ -2,8 +2,6 @@
 import * as NoteManager from "./note_management.js"
 
 
-
-
 // _____________________________________________________
 
 document.addEventListener("DOMContentLoaded", function() {
