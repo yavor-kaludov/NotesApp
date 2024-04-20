@@ -54,7 +54,7 @@ async function showNotes() {
         noteElement.querySelector("[data-note-text]").textContent = note;
 
         const noteDeleteButton = noteElement.querySelector("[data-note-delete-button]");
-        noteDeleteButton.onclick = function() {deleteNote(index)};
+        noteDeleteButton.addEventListener("click", () => deleteNote(index));
 
         notesList.append(noteElement);
     });
