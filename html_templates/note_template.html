@@ -1,12 +1,17 @@
 <template id="note_template">
-    <div class="flex flex-row justify-between space-x-5 px-2 note-container" data-note-main-div>
-        <p data-note-text>
+    <div class="flex flex-row justify-between space-x-5 p-2 note-container border-2" data-note-main-div>
+        <!-- below is an arbitrary property that does what break-word should be doing but doesn't.. -->
+        <p class="[overflow-wrap:anywhere] flex flex-col justify-center" data-note-text> 
             <!-- note text goes here -->
 
             sample note (note user-gen)
         </p>
-        <button data-note-delete-button>
-            Delete
-        </button>
+
+        <div class="flex flex-col justify-center">
+            <button data-note-delete-button class="bg-red-500 text-white p-1 hover:scale-110 transition-transform">
+                Delete
+            </button>
+        </div>
+        
     </div>
 </template>

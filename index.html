@@ -16,14 +16,14 @@
 
 <body class="flex flex-row justify-center">
 
-    <div class="flex flex-row justify-center w-full max-w-2xl min-h-96 bg-blue-300 p-5 rounded-lg m-5">
+    <div class="flex flex-row justify-center w-full max-w-2xl border-2 border-black bg-white p-10 rounded-lg m-5">
 
         <div id="main_component" class="flex flex-col w-full">
 
             <div class="flex flex-col justify-between h-32">
                 <h1 class="self-center text-2xl z-10 font-jaq">Welcome to The Best To-Do App Ever!</h1>
 
-                <p class="self-center rotate-6 font-bold text-yellow-200 text-3xl border-4 border-yellow-200 opacity-60  p-2">This is a prototype!</p>
+                <p class="self-center rotate-6 font-bold text-yellow-400 text-3xl border-4 border-yellow-400 opacity-60  p-2">This is a prototype!</p>
             </div>
             
 
@@ -33,7 +33,7 @@
                 Whaterver happens, it's fun and I love learning like this!
             </div>
 
-            <input type="text" name="note_input" id="note_input">
+            <input type="text" name="note_input" id="note_input" class="border-2" placeholder="Type something">
 
             <div class="pt-10 flex flex-row space-x-3">
                 <button id="add_note_button" class="bg-white border-2 border-black p-2">Click to Add Note!</button>
@@ -42,7 +42,7 @@
 
             
 
-            <div id="notes_list" class=" space-y-2 my-10">
+            <div id="notes_list" class="hidden space-y-2 mt-10">
                 <!-- notes will be generated here -->
 
                 

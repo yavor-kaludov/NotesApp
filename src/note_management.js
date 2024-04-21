@@ -47,6 +47,10 @@ function setupAddNoteListener() {
 
 async function showNotes() { // creates a note element from the note template text + detete button
     const notesList = document.getElementById("notes_list");
+
+    if (notesArray.length > 0) {
+        notesList.className = "visible space-y-2 mt-10"
+    }
     notesList.innerHTML = "";
 
     if (!noteTemplateContent) {
