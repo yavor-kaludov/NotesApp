@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", function() {
     
     NoteManager.setupNotesManager();
     
-    
 });
 
 document.addEventListener("DOMContentLoaded", function() {

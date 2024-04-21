@@ -3,17 +3,15 @@ import { loadTemplateContent } from "./template_management.js";
 
 let noteTemplateContent;
 
-
-
 async function setupNotesManager() { // this function is used to initialize all other functionality in notes_management, inside of app.js
 
     // load all necessary templates: 
+
     noteTemplateContent = await loadTemplateContent("note_template");
 
     // init other functions
     setupAddNoteListener();
-    showNotes(); // show existing notes if any
-
+    showNotes(); // shows existing notes if any exist
 
 }
 
@@ -47,7 +45,7 @@ function setupAddNoteListener() {
 
 }
 
-async function showNotes() {
+async function showNotes() { // creates a note element from the note template text + detete button
     const notesList = document.getElementById("notes_list");
     notesList.innerHTML = "";
 
