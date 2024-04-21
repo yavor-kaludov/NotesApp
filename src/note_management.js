@@ -3,10 +3,19 @@ import { loadTemplateContent } from "./template_management.js";
 
 let noteTemplateContent;
 
-async function loadNoteTemplateContent() {
-    noteTemplateContent = await loadTemplateContent("note_template");
-}
 
+
+async function setupNotesManager() { // this function is used to initialize all other functionality in notes_management, inside of app.js
+
+    // load all necessary templates: 
+    noteTemplateContent = await loadTemplateContent("note_template");
+
+    // init other functions
+    setupAddNoteListener();
+    showNotes(); // show existing notes if any
+
+
+}
 
 // array to store user generated notes
 let notesArray = [];
@@ -46,9 +55,6 @@ async function showNotes() {
         await loadNoteTemplateContent();
     }
 
-    // const theBody = document.querySelector("body");
-    // theBody.append(noteTemplateContent);
-
     notesArray.forEach((note, index) => {
         const noteElement = document.importNode(noteTemplateContent, true);
         noteElement.querySelector("[data-note-text]").textContent = note;
@@ -60,40 +66,6 @@ async function showNotes() {
     });
     
 }
-
-// Shows an updated list of notes stored in the notesArray (handles data)
-// function showNotes() {
-//     const notesList = document.getElementById("notes_list");
-//     notesList.innerHTML = ""; // Clear existing notes
-
-//     notesArray.forEach((note, index) => {
-//         const noteAndDeleteDiv = document.createElement("div");
-//         // Apply both flexbox and container styles
-//         noteAndDeleteDiv.className = "flex flex-row justify-between space-x-5 px-2 note-container"; // Use this single line to set classes
-
-//         const singleNote = document.createElement("p");
-        
-//         // singleNote.className = "break-words overflow-auto"
-
-//         // Temp FIX for broken margin styling using inline styling direcly with CSS not tailwind. (more specificity???)
-//         singleNote.style.overflowWrap = 'break-word';
-//         singleNote.style.wordBreak = 'break-all';
-//         singleNote.style.marginRight = '10px';
-
-//         const deleteNoteButton = document.createElement("button");
-
-//         singleNote.textContent = note; // Set the text of the note
-//         deleteNoteButton.textContent = "Delete"; // Set the text of the button
-//         deleteNoteButton.onclick = function() { deleteNote(index); }; // Add click handler to delete the note
-
-//         // Append elements to the note container div
-//         noteAndDeleteDiv.appendChild(singleNote);
-//         noteAndDeleteDiv.appendChild(deleteNoteButton);
-
-//         // Append the div to the notes list
-//         notesList.appendChild(noteAndDeleteDiv);
-//     });
-// }
 
 function deleteNote(index) {
     notesArray.splice(index, 1); // Remove the note at the specified index
@@ -108,11 +80,4 @@ function handleEnterKey(event) {
 }
 
 
-document.addEventListener("DOMContentLoaded", function() {
-    loadNoteTemplateContent().then(() => {
-        setupAddNoteListener();
-        showNotes(); // Initial display
-    });
-});
-
-export { notesArray, addNoteToArray, setupAddNoteListener, showNotes, deleteNote, handleEnterKey };
+export { setupNotesManager, notesArray, addNoteToArray, setupAddNoteListener, showNotes, deleteNote, handleEnterKey };

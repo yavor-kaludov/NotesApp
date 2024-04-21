@@ -6,7 +6,8 @@ import * as NoteManager from "./note_management.js"
 
 document.addEventListener("DOMContentLoaded", function() {
     
-    NoteManager.setupAddNoteListener();
+    NoteManager.setupNotesManager();
+    
     
 });
 
