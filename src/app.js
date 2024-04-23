@@ -12,5 +12,5 @@ document.addEventListener("DOMContentLoaded", function() {
 
 document.addEventListener("DOMContentLoaded", function() {
     const noteInput = document.getElementById("note_input");
-    noteInput.addEventListener('keydown', NoteManager.handleEnterKey);
+    noteInput.addEventListener('keydown', NoteManager.handleKeydown);
 });

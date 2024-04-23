@@ -32,7 +32,7 @@ function addNoteToArray(note) {
         showNotes();
         
     } else {
-        console.log("No note entered!");
+        console.error("No note entered!");
     }
 
 }
@@ -47,10 +47,16 @@ function setupAddNoteListener() {
 
 async function showNotes() { // creates a note element from the note template text + detete button
     const notesList = document.getElementById("notes_list");
+    const clearAllNotesButton = document.getElementById("clear_all_button");
 
     if (notesArray.length > 0) {
         notesList.className = "visible space-y-2 mt-10"
+        clearAllNotesButton.className = "visible pt-10 text-center"
+    } else {
+        notesList.className = "hidden space-y-2 mt-10"
+        clearAllNotesButton.className = "hidden pt-10 text-center"
     }
+
     notesList.innerHTML = "";
 
     if (!noteTemplateContent) {
@@ -66,6 +72,10 @@ async function showNotes() { // creates a note element from the note template te
 
         notesList.append(noteElement);
     });
+
+    clearAllNotesButton.addEventListener("click", function() {
+        deleteAllNotes();
+    });
     
 }
 
@@ -74,7 +84,12 @@ function deleteNote(index) {
     showNotes(); // Refresh the list to show the updated notes
 }
 
-function handleEnterKey(event) {
+function deleteAllNotes() { // deletes all notes in notesArray
+    notesArray.length = 0;
+    showNotes();
+}
+
+function handleKeydown(event) { // handles all keysdown events, just add more ifs to add more keys:)
     if (event.keyCode == 13) {
         event.preventDefault();
         addNoteToArray();
@@ -82,4 +97,4 @@ function handleEnterKey(event) {
 }
 
 
-export { setupNotesManager, notesArray, addNoteToArray, setupAddNoteListener, showNotes, deleteNote, handleEnterKey };
+export { setupNotesManager, notesArray, addNoteToArray, setupAddNoteListener, showNotes, deleteNote, handleKeydown };
